@@ -2,9 +2,6 @@
 
 A simple macOS application that automatically prevents other applications from launching.
 
-> [!IMPORTANT]
-> This was written for me. I hope you find it useful, but I make no guarantees it will work for you. If you have any issues or want to add functionality, you're probably better off maintaining your own fork.
-
 ## about
 
 launchguard monitors application launches and immediately terminates any with specific bundle identifiers. It was written to stop Apple Music from launching when using Bluetooth headphones (super annoying btw), but it can also be used to block other apps.

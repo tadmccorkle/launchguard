@@ -16,7 +16,7 @@
   NSString *bundleIdentifier = [app bundleIdentifier];
 
   NSError *error           = nil;
-  NSString *configPath     = [NSString stringWithFormat:@"%@/%@", NSHomeDirectory(), CFG_PATH];
+  NSString *configPath     = [NSHomeDirectory() stringByAppendingPathComponent:CFG_PATH];
   NSString *configContents = [NSString stringWithContentsOfFile:configPath
                                                        encoding:NSUTF8StringEncoding
                                                           error:&error];
@@ -46,18 +46,16 @@
 
 int
 main(int argc, const char *argv[]) {
-  @autoreleasepool {
-    NSWorkspace *ws          = [NSWorkspace sharedWorkspace];
-    NSNotificationCenter *nc = [ws notificationCenter];
-    LaunchGuard *launchguard = [[LaunchGuard alloc] init];
+  NSWorkspace *ws          = [NSWorkspace sharedWorkspace];
+  NSNotificationCenter *nc = [ws notificationCenter];
+  LaunchGuard *launchguard = [[LaunchGuard alloc] init];
 
-    [nc addObserver:launchguard
-           selector:@selector(handleApplicationLaunch:)
-               name:NSWorkspaceWillLaunchApplicationNotification
-             object:nil];
+  [nc addObserver:launchguard
+         selector:@selector(handleApplicationLaunch:)
+             name:NSWorkspaceWillLaunchApplicationNotification
+           object:nil];
 
-    [[NSRunLoop currentRunLoop] run];
-  }
+  [[NSRunLoop currentRunLoop] run];
 
   return 0;
 }
